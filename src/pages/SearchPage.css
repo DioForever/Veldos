@@ -1,0 +1,66 @@
+
+
+.scrollbar {
+    position: relative;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    height: 400px;
+}
+  
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #6d88a0;
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #3d526e;
+    border-radius: 15px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #32435a;
+}
+
+.result{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    margin: 20px;
+    margin-bottom: 0;
+    border-radius: 10px;
+    background-color: #0a2135;
+    gap : 20px;
+    color:  #8dafcc;
+}
+
+.result img{
+    min-height: 1vh;
+    max-height: 25vh;
+    object-fit: contain;
+    border : 4px solid #8dafcc;
+    border-radius: 10px;
+}
+
+.result div{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* <div key={anime.pageurl} className="result">
+    <img src={anime.imageurl} alt="" />
+    <h3>{anime.title}</h3>
+    <div className="result-info">
+        <p>Episodes: {anime.episode_count}</p>
+        <p>Released: {anime.date}</p>
+    </div>
+   </div> */

@@ -1,12 +1,13 @@
 *{
   margin: 0;
   padding: 0;
+  
 }
 
 body{
   background-color: #0B2B47;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .navbar{
@@ -69,7 +70,6 @@ body{
   height: 50px;
   background-color: #3a5983;
   cursor: pointer;
-  background-image: url("github_profile.png");
 }
 
 .search-bar button img{
