@@ -4,6 +4,7 @@
 mod gogoanime;
 mod search;
 mod animeheaven;
+mod info;
 use std::result;
 
 use reqwest;
@@ -16,7 +17,7 @@ fn greet(name: &str) -> String {
 
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![greet, animeheaven::get_master_m3u8, animeheaven::search_anime])
+        .invoke_handler(tauri::generate_handler![greet, animeheaven::get_master_m3u8, animeheaven::search_anime, info::getAnimeInfo])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

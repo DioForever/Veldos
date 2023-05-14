@@ -40,6 +40,13 @@
     background-color: #0a2135;
     gap : 20px;
     color:  #8dafcc;
+    transition: 0.3s;
+}
+
+.result:hover{
+    background-color: #8dafcc;
+    color: #0a2135;
+    
 }
 
 .result img{

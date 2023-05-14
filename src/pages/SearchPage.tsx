@@ -10,21 +10,29 @@ import {search} from "../components/searchResult";
 
 import "./SearchPage.css";
 
-function Search() {
+
+function Search({searchResult, setSearchResult, setinfoAnime, infoAnime}: any) {
+
   const [name, setName] = useState("");
-  const [searchResult, setSearchResult] = useState<Anime[]>([]);
+  function handleKeyDown(event: any) {
+    event.preventDefault();
+    if (event.key === "Enter") {
+      getSearched(name);
+    }
+  }
 
 
   function getSearched(name: string) {
     // deconstruct the array to array of Anime objects
+    setSearchResult([]);
     search(name).then((res: any[]) => {
-        const searchResultList: Anime[] = res.map((anime) => {
-            const [title, pageurl, imageurl, episode_count, date] = anime;
-            return { title, pageurl, imageurl, episode_count, date };
-        });
-        setSearchResult(searchResultList);
+      const searchResultList: Anime[] = res.map((anime) => {
+        const [title, pageurl, imageurl, episode_count, date] = anime;
+        return { title, pageurl, imageurl, episode_count, date };
+      }); 
+      setSearchResult(searchResultList);
     });
-}
+  }
   
 
   
@@ -38,16 +46,15 @@ function Search() {
             <div></div>
           </div>
           <div className="search">
-            <form action="" className="search-bar" onSubmit={() => getSearched(name)}>
+            <form action="" className="search-bar" onSubmit={(e) => {getSearched(name); handleKeyDown(e);}}>
               <input onChange={(e) => setName(e.target.value)} type="search" name="q" id="searchInput" autoComplete="off" placeholder="Search..." />
               <Button onMouseDown={() => getSearched(name)}><img src={search_logo}/></Button>
             </form>
           </div>
           <div className="pfp"><img src={profile_logo} alt="" /></div>
         </div>
-
         <div className="results">
-          <ResultList searchResult={searchResult}/>
+          <ResultList  searchResult={searchResult} setinfoAnime={setinfoAnime} />
         </div>
       </div>
   );

@@ -1,0 +1,111 @@
+
+
+.info{
+    display: flex;
+    flex-direction: column;
+
+    padding: 20px;
+    margin: 20px;
+    margin-bottom: 0;
+    border-radius: 10px;
+    background-color: #0a2135;
+    gap : 20px;
+    color:  #8dafcc;
+}
+
+.description{
+    display: flex;
+    gap: 3vw;
+
+
+}
+
+.description img{
+    min-width: 25vw;
+    min-height: 10vh;
+    max-height: 150vh;
+    border : 4px solid #8dafcc;
+    border-radius: 10px;
+}
+
+.description div{
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+}
+
+.description div h1{
+    align-self: center;
+    padding: 2vh;
+    font-size: 5vw;
+    line-height: 5vw;
+} 
+
+.watch{
+    display: flex;
+    color: #8dafcc;
+    flex-direction: column;
+
+    margin: 20px;
+    background-color: #0a2135;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.watch:hover{
+    background-color: #8dafcc;
+    color: #0a2135;
+}
+
+.watch h1{
+    align-self: center;
+    padding: 2vh;
+    font-size: 2vw;
+    line-height: 2vw;
+
+} 
+
+.episodes{
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 1vw;
+    line-height: 2vw;
+}
+
+.result-info{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #0a2135;
+    color: #8dafcc;
+    transition: 0.4s;
+}
+
+.result-info:hover{
+    background-color: #8dafcc;
+    color: #0a2135;
+}
+
+
+
+
+.episodes div div {
+    width: 11vw;
+    padding-top: 0.5vh;
+    padding-bottom: 0.5vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.episodes div div hr{
+    background-color: #397ec2;
+    width: 100%;
+    border-radius: 10px;
+    height: 6px;
+    border: 0;
+
+}

@@ -2,7 +2,7 @@ use std::process::Command;
 use reqwest;
 use select::document::Document;
 use select::predicate::{Attr};
-use selenium_rs::element;
+
 
 #[tauri::command]
 pub fn get_master_m3u8() {
