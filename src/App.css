@@ -1,110 +1,17 @@
-*{
-  margin: 0;
-  padding: 0;
-  
-}
-
 body{
-  background-color: #0B2B47;
-  width: 100%;
-  min-height: 100vh;
-}
-
-.navbar{
-  background-color: #0a2135;
-  display: flex;
-  width: 100%;
-}
-
-.navbar div{
-  margin-left: 5%;
-  margin-right: 5%;
-  margin-top: 0.5%;
-  margin-bottom: 0.5%;
-}
-
-.menu{
-  padding-top: 0.2%;
-}
-
-.menu div{
-  width: 40px;
-  height: 6px;
-  background-color: #3d526e;
-  margin: 8px 0;
-}
-
-.search{
-  display: inline-block;
-  background-color:   #3d526e;
-  border-radius: 50px;
-  width: 80%;
-  margin-top: 1.5%;
-  margin-bottom: 1.5%;
-}
-
-.search-bar{
-  width: 100%;
-  max-width: 90%;
-  background-color: #3d526e;
-  display: flex;
-  align-items: center;
-  border-radius: 60px;
-  padding: 0.5% 1%;
-
-}
-
-.search-bar input{
-  background: transparent;
-  flex: 1;
-  border: 0;
-  outline: none;
-  padding: 0.5% 2%;
-  font-size: 20px;
-  color: #8dafcc;
-}
-
-.search-bar button{
-  border: 0;
-  border-radius: 50%;
-  height: 50px;
-  background-color: #3a5983;
-  cursor: pointer;
-}
-
-.search-bar button img{
-  height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #06070e;
+    height: 100v;
+    color: #eaecf5;
 }
 
 
-.pfp img{
-  border-radius: 50%;
-  height: 50px;
-  border: 5px solid #3d526e;
-  float: right;
-}
-  
 
-iframe{
-  width: 80%;
-  height: 85vh;
-  overflow:hidden;
-  margin: 3vh 3vw;
-  border: 5px solid #3d526e;
-  border-radius: 1vw 1vh;
-}
-
-.video{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.video h1{
-  font-family: Flat;
-  color: #8dafcc;
-  font-size: 3vw;
-  margin-top: 3vh;
-}
-
+/* 
+    Primary: #eaecf5 (RGB: 234, 236, 245)
+    Secondary: #06070e (RGB: 6, 7, 14)
+    Primary Button: #0d2f52 (RGB: 13, 47, 82)
+    Secondary Button: #ffffff (RGB: 255, 255, 255)
+    Accent: #763ea8 (RGB: 118, 62, 168)
+*/

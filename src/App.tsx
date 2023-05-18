@@ -1,39 +1,46 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import { invoke } from "@tauri-apps/api/tauri";
-import Button from 'react-bootstrap/Button';
-import search_logo from './assets/Search.png';
-import profile_logo from './assets/profilepicture.png';
-import video from './assets/log-horizon-episode-11681519621.0.mp4';
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Search from "./pages/SearchPage";
-import InfoPage from "./pages/InfoPage";
-import { Anime, AnimeInfo } from "./components/searchResult";
+import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import { Home } from "./components/Home";
+import { Search } from "./components/Search";
 
+
+export type AnimeSearch = {
+  title: string;
+  url: string;
+  image_url: string;
+  episodes: string;
+  time: string;
+}
+// const [title, pageurl, imageurl, episode_count, date]
+export type AnimeInfo = {
+  title: string;
+  pageurl: string;
+  imageurl: string;
+  episode_count: string;
+  date: string;
+}
 
 
 function App() {
-  const [searchResult, setSearchResult] = useState<Anime[]>([]);
-  const [infoAnime, setinfoAnime] = useState<AnimeInfo>({} as AnimeInfo);
+  const [searchResponse, setSearchResponse] = useState<AnimeSearch[]>([]);
+  const [animeInfo, setAnimeInfo] = useState<AnimeSearch[]>([]);
 
   return (
-      <div>
-        <Router>
-          <Routes>
-            <Route path="/" element={<Search 
-             searchResult={searchResult}
-             setSearchResult={setSearchResult}
-             setinfoAnime={setinfoAnime}
-             infoAnime={infoAnime}/>}></Route>
-            <Route path="/info" element={<InfoPage 
-            setSearchResult={setSearchResult}
-            infoAnime={infoAnime}/>}></Route>
-          </Routes>
-        </Router>
+    <div className="base">
+      <Navbar searchResponse={searchResponse} setSearchResponse={setSearchResponse} />
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/search" element={<Search searchResponse={searchResponse}/>}/>
+        </Routes>
 
-      {}
-      </div>
+    </div>
+
+
+  
   );
 }
 
