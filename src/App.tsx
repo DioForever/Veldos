@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-route
 import Navbar from "./components/Navbar";
 import { Home } from "./components/Home";
 import { Search } from "./components/Search";
+import { AnimeInfo } from "./components/AnimeInfo";
 
 
 export type AnimeSearch = {
@@ -35,6 +36,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home/>}/>
           <Route path="/search" element={<Search searchResponse={searchResponse}/>}/>
+          <Route path="/animeinfo" element={<AnimeInfo/>}/>
         </Routes>
 
     </div>

@@ -13,6 +13,7 @@
     gap: 1vw;
     margin: 0;
     margin-top: 2vh;
+    background-color: #06070e;
 
 }
 
@@ -31,7 +32,7 @@
     margin-right: 10vw;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
-    gap: 2vw;
+    /* gap: 2vw; */
     position: relative;
 }
 
@@ -51,7 +52,9 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 1vw;
+    margin-bottom: 5vw;
+    margin-top: 2vw;
+    gap: 15%;
 }
 
 .anime-title{
@@ -70,14 +73,7 @@
     color: #eaecf5;
 }
 
-.like{
-    margin: 0;
-    width: 4vh;
-    right: 0;
-    transform: translate(-10vw, -35vh);
-    position: absolute;
 
-}
 
 .like:hover{
     cursor: pointer;
