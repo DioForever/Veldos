@@ -1,16 +1,3 @@
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #06070e;
-  height: 100v;
-  color: #eaecf5;
-}
-
-.base {
-  height: 100vh;
-  background-color: #06070e;
-}
-
 /* 
     Primary: #eaecf5 (RGB: 234, 236, 245)
     Secondary: #06070e (RGB: 6, 7, 14)
@@ -18,3 +5,19 @@ body {
     Secondary Button: #ffffff (RGB: 255, 255, 255)
     Accent: #763ea8 (RGB: 118, 62, 168)
 */
+
+.showBtn {
+  border: 2px solid #763ea8;
+  margin: 1rem;
+  transition: 5s;
+}
+
+.read-more-container {
+  overflow: hidden;
+  transition: 5s;
+}
+
+.read-more-container p {
+  margin: 0;
+  transition: 5s;
+}

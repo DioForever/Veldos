@@ -4,9 +4,10 @@ import { invoke } from "@tauri-apps/api/tauri";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import { Home } from "./components/Home";
-import { Search } from "./components/Search";
-import { AnimeInfo } from "./components/AnimeInfo";
+import { Home } from "./pages/Home";
+import { Search } from "./pages/Search";
+import AnimeInfoPage from "./pages/AnimeInfoPage";
+import { WatchEpisode } from "./pages/WatchEpisode";
 
 
 export type AnimeSearch = {
@@ -17,32 +18,37 @@ export type AnimeSearch = {
   time: string;
 }
 // const [title, pageurl, imageurl, episode_count, date]
+// return vec![(title, url ,img, episode_count, release_date, genres, description, episodes)];
 export type AnimeInfo = {
   title: string;
   pageurl: string;
   imageurl: string;
   episode_count: string;
   date: string;
+  genres: string;
+  description: string;
+  episodes: any;
 }
 
 
 function App() {
   const [searchResponse, setSearchResponse] = useState<AnimeSearch[]>([]);
-  const [animeInfo, setAnimeInfo] = useState<AnimeSearch[]>([]);
+  const [getAnimeInfo, setAnimeInfo] = useState<AnimeInfo>({} as AnimeInfo);
 
   return (
     <div className="base">
       <Navbar searchResponse={searchResponse} setSearchResponse={setSearchResponse} />
-        <Routes>
-          <Route path="/" element={<Home/>}/>
-          <Route path="/search" element={<Search searchResponse={searchResponse}/>}/>
-          <Route path="/animeinfo" element={<AnimeInfo/>}/>
-        </Routes>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/search" element={<Search searchResponse={searchResponse} setAnimeInfo={setAnimeInfo} />} />
+        <Route path="/animeinfo" element={<AnimeInfoPage getAnimeInfo={getAnimeInfo} />} />
+        <Route path="/watchEpisode" element={<WatchEpisode />} />
+      </Routes>
 
     </div>
 
 
-  
+
   );
 }
 
