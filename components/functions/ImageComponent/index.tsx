@@ -12,7 +12,6 @@ interface ImageComponentProps {
 
 
 const ImageComponent = ({ imageUrl }: ImageComponentProps) => {
-  const target = document.getElementById("target");
 
   // Create a new image, set its src to the upscaled src,
   // and place it on the page
