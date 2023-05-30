@@ -1,0 +1,30 @@
+/* 
+    Primary: #eaecf5 (RGB: 234, 236, 245)
+    Secondary: #06070e (RGB: 6, 7, 14)
+    Primary Button: #0d2f52 (RGB: 13, 47, 82)
+    Secondary Button: #ffffff (RGB: 255, 255, 255)
+    Accent: #763ea8 (RGB: 118, 62, 168)
+*/
+
+.image-container {
+  background-size: cover;
+  background-position: center;
+  /* background-position: center; */
+  background-repeat: no-repeat;
+  /* width: 100%; */
+  height: 30vw;
+  border-radius: 1rem;
+  border: 4px solid #0d2f52;
+  margin-bottom: 1rem;
+  display: grid;
+  grid-template-columns: 90% 5%;
+}
+
+.image-heart {
+  padding-top: 1rem;
+  min-width: 30px;
+  width: 5vw;
+  color: #763ea8;
+
+  /* padding-left: 70vw; */
+}
