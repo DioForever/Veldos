@@ -8,6 +8,7 @@ import "./style.css";
 import { AnimeSearch } from '../../../app/page';
 import { invoke } from "@tauri-apps/api/tauri";
 import { useRouter } from 'next/navigation';
+import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context';
 // import { useRouter } from 'next/router';
 // import { NavigateFunction, useNavigate } from 'react-router-dom';
 
@@ -31,11 +32,10 @@ import { useRouter } from 'next/navigation';
 
 // }
 
-const handleKeyDown = (e: any) => {
+const handleKeyDown = (e: any, router: AppRouterInstance) => {
   if (e.key === 'Enter') {
-    const router = useRouter();
     // search(e.target.value);
-    router.push("/search?search_url=" + e.target.value);
+    router.push("/Search?search_url=" + e.target.value);
   }
 }
 
@@ -61,7 +61,7 @@ function Navbar() {
 
         <div className="Input">
           <div>
-            <input type="text" placeholder="Search..." onKeyDown={(e) => { handleKeyDown(e); }} onChange={(e) => { setsearchWord(e.target.value); console.log(searchWord); }}
+            <input type="text" placeholder="Search..." onKeyDown={(e) => { handleKeyDown(e, router); }} onChange={(e) => { setsearchWord(e.target.value); console.log(searchWord); }}
             // style={ (icon != undefined) ? {padding: '6.5px 2em 6.5px 10px'} : {}}
             />
             <div className="Icon">

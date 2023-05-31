@@ -1,3 +1,4 @@
+"use client"
 import { ReactNode, useEffect, useState } from 'react';
 import { AnimeSearch, AnimeInfo } from '../../app/page';
 // import { HeartIcon as HeartFEmpty } from '@heroicons/react/24/outline';
@@ -7,6 +8,8 @@ import './style.css';
 import { invoke } from '@tauri-apps/api';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
+import Layout from '@/components/view/Layout';
+import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context';
 
 interface SearchProps {
   searchResponse: AnimeSearch[];
@@ -22,11 +25,9 @@ interface SearchProps {
 // description: string;
 // episodes: any;
 
-function loadAnimeInfo(url: string) {
-
-
-  const router = useRouter();
-  let animeInfo: any = []
+function loadAnimeInfo(url: string, router: AppRouterInstance) {
+  router.push("/AnimeInfoPage?search_url=" + url);
+  // let animeInfo: any = []
   // invoke("getAnimeInfo", { url }).then((animeInfoRaw: any) => {
   //   animeInfo = (animeInfoRaw);
   //   setAnimeInfo({
@@ -64,26 +65,29 @@ async function searchAnime(name: string, setSearchResponse: React.Dispatch<React
 }
 
 
+let loaded = false;
 
-
-export function Search() {
+export default function Search() {
+  const router = useRouter();
   const [searchResponse, setSearchResponse] = useState<AnimeSearch[]>([]);
+  const searchParams = useSearchParams();
   useEffect(() => {
-    const searchParams = useSearchParams();
-    const search = searchParams.get('search');
-    if (search != null) {
+    const search = searchParams.get("search_url");
+    if (search) {
       searchAnime(search, setSearchResponse);
     }
-  })
+    loaded = true;
+  }, []);
+
 
 
   return (
-    <>
+    <Layout>
       <div className="search">
         {searchResponse.map((anime) => {
           return (
-            <div key={anime.url} className='border'>
-              <div className="anime" onClick={() => { loadAnimeInfo(anime.url) }}>
+            <div key={anime.url} className='box'>
+              <div className="anime" onClick={() => { loadAnimeInfo(anime.url, router) }}>
                 <div className="anime-image">
                   <img src={anime.image_url} alt="anime" />
                 </div>
@@ -98,6 +102,6 @@ export function Search() {
         })
         }
       </div>
-    </>
+    </Layout>
   );
 }
