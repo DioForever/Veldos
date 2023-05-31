@@ -1,13 +1,16 @@
 import { ReactNode } from 'react';
+import Navbar from '../../functions/Navbar';
+import "../Layout/Layout.module.css"
 
 interface LayoutProps {
   children: ReactNode;
 }
 
-export function Layout({ children }: LayoutProps) {
+export default function Layout({ children }: LayoutProps) {
   return (
-    <div className="flex flex-col min-h-screen">
-      <main className="flex-grow">{children}</main>
+    <div className="Layout">
+      <Navbar></Navbar>
+      {children}
     </div>
   );
 }

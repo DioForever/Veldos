@@ -6,12 +6,12 @@
     Accent: #763ea8 (RGB: 118, 62, 168)
 */
 
-.navSpace{
+.navSpace {
   height: 4rem;
   width: 100%;
 }
 
-.navbar{
+.navbar {
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -23,15 +23,12 @@
   position: fixed;
   background-color: #06070e;
   height: 4.5rem;
-  background-
 }
 
 .Input {
   position: relative;
   display: inline-block;
   padding-left: 2rem;
-
-  
 }
 .Input input {
   margin-top: 0.5rem;
@@ -57,7 +54,7 @@
   color: #eaecf5;
 }
 
-.menu{
+.menu {
   color: #eaecf5;
   margin-top: 0.5rem;
   height: 3rem;
@@ -65,7 +62,7 @@
   padding-right: 2rem;
 }
 
-.main{
+.main {
   color: #eaecf5;
   margin-top: 0.5rem;
   height: 3rem;

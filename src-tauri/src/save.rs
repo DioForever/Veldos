@@ -8,6 +8,16 @@ struct AnimeItem {
 }
 
 pub static mut search_list: Vec<(String, String, String, String)> = Vec::new();
+pub static mut anime_info: Vec<(
+    String,
+    String,
+    String,
+    String,
+    String,
+    String,
+    String,
+    Vec<Vec<(String, String, String)>>,
+)> = Vec::new();
 
 pub fn set_search_list(mut arg: Vec<(String, String, String, String)>) {
     anime_list = arg;
@@ -43,4 +53,8 @@ pub fn get_anime_info() -> Vec<(
     Vec<Vec<(String, String, String)>>,
 )> {
     return anime_info.clone();
+}
+
+pub fn set_episode_info(mut arg: Vec<(String, String, String)>) {
+    episode_info = arg;
 }

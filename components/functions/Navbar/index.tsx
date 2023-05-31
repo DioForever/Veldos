@@ -7,43 +7,44 @@ import '@szhsin/react-menu/dist/transitions/slide.css';
 import "./style.css";
 import { AnimeSearch } from '../../../app/page';
 import { invoke } from "@tauri-apps/api/tauri";
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/router';
 // import { NavigateFunction, useNavigate } from 'react-router-dom';
 
 
 
 
-export async function search(name: string, setSearchResponse: React.Dispatch<React.SetStateAction<AnimeSearch[]>>) {
-  console.log("name: " + name);
-  setSearchResponse([]);
-  const res: string[] = await invoke("search_anime", { title: name });
-  console.log(res);
-  setSearchResponse(res.map((anime) => {
-    return {
-      title: anime[0],
-      url: anime[1],
-      image_url: anime[2],
-      episodes: anime[3],
-      time: anime[4],
-    }
-  }));
+// export async function search(name: string) {
+//   console.log("name: " + name);
+//   setSearchResponse([]);
+//   const res: string[] = await invoke("search_anime", { title: name });
+//   console.log(res);
+//   setSearchResponse(res.map((anime) => {
+//     return {
+//       title: anime[0],
+//       url: anime[1],
+//       image_url: anime[2],
+//       episodes: anime[3],
+//       time: anime[4],
+//     }
+//   }));
 
-}
+// }
 
-const handleKeyDown = (e: any, setSearchResponse: React.Dispatch<React.SetStateAction<AnimeSearch[]>>) => {
+const handleKeyDown = (e: any) => {
   if (e.key === 'Enter') {
     const router = useRouter();
-    search(e.target.value, setSearchResponse);
-    router.push("/search");
+    // search(e.target.value);
+    router.push("/search?search_url=" + e.target.value);
   }
 }
 
 interface NavbarProps {
-  searchResponse: AnimeSearch[];
-  setSearchResponse: React.Dispatch<React.SetStateAction<AnimeSearch[]>>;
+  // searchResponse: AnimeSearch[];
+  // setSearchResponse: React.Dispatch<React.SetStateAction<AnimeSearch[]>>;
 }
 
-function Navbar({ searchResponse, setSearchResponse }: NavbarProps) {
+function Navbar() {
   const [searchWord, setsearchWord] = useState<string>("");
   const ref = useRef(null);
   const [menuState, toggle] = useMenuState({ transition: true });
@@ -60,7 +61,7 @@ function Navbar({ searchResponse, setSearchResponse }: NavbarProps) {
 
         <div className="Input">
           <div>
-            <input type="text" placeholder="Search..." onKeyDown={(e) => { handleKeyDown(e, setSearchResponse); }} onChange={(e) => { setsearchWord(e.target.value); console.log(searchWord); }}
+            <input type="text" placeholder="Search..." onKeyDown={(e) => { handleKeyDown(e); }} onChange={(e) => { setsearchWord(e.target.value); console.log(searchWord); }}
             // style={ (icon != undefined) ? {padding: '6.5px 2em 6.5px 10px'} : {}}
             />
             <div className="Icon">

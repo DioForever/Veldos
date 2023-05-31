@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import DescriptionComponent from '../../components/functions/DescriptionComponent';
 import ImageComponent from '../../components/functions/ImageComponent';
 import './style.css';
+import Layout from "../../components/view/Layout"
 
 
 
@@ -42,33 +43,36 @@ function AnimeInfoPage() {
 
 
   return (
-    <body className='infoBody'>
-      <ImageComponent imageUrl={getAnimeInfo.imageurl} />
-      <div className='infoDescription'>
-        <div>
-          <h1>{getAnimeInfo.title}</h1>
-          <h4>Episodes: {(getAnimeInfo.episodes).length}/{getAnimeInfo.episode_count}</h4>
-          <h4>{getAnimeInfo.genres}</h4>
-          <h4>Release: {getAnimeInfo.date}</h4>
-          <h2>Description:</h2>
-          <DescriptionComponent text={getAnimeInfo.description} maxLengthPercentage={20} />
+    <Layout>
+      <body className='infoBody'>
+        <ImageComponent imageUrl={getAnimeInfo.imageurl} />
+        <div className='infoDescription'>
+          <div>
+            <h1>{getAnimeInfo.title}</h1>
+            <h4>Episodes: {(getAnimeInfo.episodes).length}/{getAnimeInfo.episode_count}</h4>
+            <h4>{getAnimeInfo.genres}</h4>
+            <h4>Release: {getAnimeInfo.date}</h4>
+            <h2>Description:</h2>
+            <DescriptionComponent text={getAnimeInfo.description} maxLengthPercentage={20} />
+          </div>
         </div>
-      </div>
-      <div className='infoContinue'>
-        <h2>Continue watching at Episode 1</h2>
-      </div>
-      <div className='episodes'>
-        {getAnimeInfo.episodes.map((episode: string[]) => {
-          return (
-            <div key={getAnimeInfo.pageurl} className='episode' onClick={() => { goToEpisode(getAnimeInfo.pageurl) }}>
-              <h3>{episode[0][0]}</h3>
-              <p>{episode[0][2]}</p>
-            </div>
-          )
-        })}
+        <div className='infoContinue'>
+          <h2>Continue watching at Episode 1</h2>
+        </div>
+        <div className='episodes'>
+          {getAnimeInfo.episodes.map((episode: string[]) => {
+            return (
+              <div key={getAnimeInfo.pageurl} className='episode' onClick={() => { goToEpisode(getAnimeInfo.pageurl) }}>
+                <h3>{episode[0][0]}</h3>
+                <p>{episode[0][2]}</p>
+              </div>
+            )
+          })}
 
-      </div>
-    </body>
+        </div>
+      </body>
+
+    </Layout>
 
 
 

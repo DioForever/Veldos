@@ -1,10 +1,9 @@
-
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
-#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")];
-mod gogoanime;
-mod search;
+#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 mod animeheaven;
+mod gogoanime;
 mod info;
+mod search;
 use std::result;
 
 use reqwest;
@@ -17,11 +16,15 @@ fn greet(name: &str) -> String {
 
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![greet, animeheaven::get_master_m3u8, animeheaven::search_anime, info::getAnimeInfo])
+        .invoke_handler(tauri::generate_handler![
+            greet,
+            animeheaven::get_master_m3u8,
+            animeheaven::search_anime,
+            info::getAnimeInfo
+        ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
-
 
 // #[tauri::command]
 // async fn search_anime(mut title: String) {
@@ -54,8 +57,7 @@ fn main() {
 //         count += results.len()-1;
 //         if results.len()-1 != 20 {return anime;}
 //     }
-    
+
 //     //println!("Found {} results", count);
 
 // }
-
