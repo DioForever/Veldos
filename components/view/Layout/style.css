@@ -1,0 +1,14 @@
+/* 
+    Primary: #eaecf5 (RGB: 234, 236, 245)
+    Secondary: #06070e (RGB: 6, 7, 14)
+    Primary Button: #0d2f52 (RGB: 13, 47, 82)
+    Secondary Button: #ffffff (RGB: 255, 255, 255)
+    Accent: #763ea8 (RGB: 118, 62, 168)
+*/
+.Layout {
+  /* width: 100vw; */
+  height: 100vh;
+  padding: 15%;
+  padding-top: 6rem;
+  background-color: #06070e;
+}

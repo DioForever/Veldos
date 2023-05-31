@@ -26,12 +26,14 @@ const ImageComponent = ({ imageUrl }: ImageComponentProps) => {
   };
 
 
-  return <div className="image-container" style={imageStyle}>
-    <div className='image-heart'>
-      {/* <HeartFull /> */}
+  return (
+    <div className="image-container" style={imageStyle}>
+      <div className='image-heart'>
+        {/* <HeartFull /> */}
+      </div>
+      <img src="" alt="" id='target' />
     </div>
-    <img src="" alt="" id='target' />
-  </div>;
+  );
 };
 
 export default ImageComponent;

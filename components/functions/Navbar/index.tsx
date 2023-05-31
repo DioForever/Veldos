@@ -74,7 +74,6 @@ function Navbar() {
           {/* <Bars3Icon /> */}
         </div>
       </nav>
-      <div className='navSpace'>Damn, you found an Easter Egg</div>
 
 
       <ControlledMenu

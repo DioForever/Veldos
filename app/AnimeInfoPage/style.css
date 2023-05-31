@@ -9,9 +9,9 @@
 .infoBody {
   display: flex;
   flex-direction: column;
-  padding: 3%;
+  /* padding: 3%;
   padding-left: 10%;
-  padding-right: 10%;
+  padding-right: 10%; */
   background-color: #06070e;
 }
 
