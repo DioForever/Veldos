@@ -1,14 +1,23 @@
-use std::process::Command;
 use reqwest;
 use select::document::Document;
-use select::predicate::{Attr};
+use select::predicate::Attr;
+use std::process::Command;
 
 pub static mut anime_list: Vec<(String, String, String, String)> = Vec::new();
 
-
-
 #[tauri::command]
-pub async fn getAnimeInfo(url: String) -> Vec<(String, String, String, String, String, String, String, Vec<Vec<(String, String, String)>>)> {
+pub async fn getAnimeInfo(
+    url: String,
+) -> Vec<(
+    String,
+    String,
+    String,
+    String,
+    String,
+    String,
+    String,
+    Vec<Vec<(String, String, String)>>,
+)> {
     let resp = reqwest::get(&url).await.unwrap();
     let body = resp.text().await.unwrap();
 
@@ -33,7 +42,6 @@ pub async fn getAnimeInfo(url: String) -> Vec<(String, String, String, String, S
     let mut episode_count: String = String::new();
     let mut release_date: String = String::new();
     let mut episodes: Vec<Vec<(String, String, String)>> = vec![];
-
 
     for element in element_img {
         img = element.attr("src").unwrap().clone().to_string();
@@ -65,17 +73,22 @@ pub async fn getAnimeInfo(url: String) -> Vec<(String, String, String, String, S
             let status_list = genres_list[1].split("Status:").collect::<Vec<&str>>();
             let episodes_list = status_list[1].split("Episodes:").collect::<Vec<&str>>();
             let release_date_list = episodes_list[1].split("Year:").collect::<Vec<&str>>();
-            println!("genressss lists {:?}\n  {:?}\n  {:?}\n  {:?} ", genres_list, status_list, episodes_list, release_date_list);
+            println!(
+                "genressss lists {:?}\n  {:?}\n  {:?}\n  {:?} ",
+                genres_list, status_list, episodes_list, release_date_list
+            );
             genres = status_list[0].replace("*-*", "").replace("*-* ", "");
             status = episodes_list[0].replace("*-*", "");
             episode_count = release_date_list[0].replace("*-*", "");
             release_date = release_date_list[1].replace("*-*", "");
 
-            println!("genressss {} - {} - {} - {} ", genres, status, episode_count, release_date);
+            println!(
+                "genressss {} - {} - {} - {} ",
+                genres, status, episode_count, release_date
+            );
             break;
         }
         i += 1;
-
     }
     println!("----------------------------");
 
@@ -110,8 +123,6 @@ pub async fn getAnimeInfo(url: String) -> Vec<(String, String, String, String, S
         let mut episode_r: Vec<(String, String, String)> = vec![(title, link, year)];
         println!("episode {:?}", episode_r);
         episodes.push(episode_r);
-
- 
     }
     for element in element_episodes {
         let title = element.attr("title").unwrap().to_string();
@@ -124,7 +135,6 @@ pub async fn getAnimeInfo(url: String) -> Vec<(String, String, String, String, S
         let mut episode: Vec<(String, String, String)> = vec![(title, link, year)];
         println!("episode {:?}", episode);
         episodes.push(episode);
-
     }
     println!("----------------------------");
 
@@ -137,6 +147,15 @@ pub async fn getAnimeInfo(url: String) -> Vec<(String, String, String, String, S
     // genres: string,
     // description: string
     // episodes
-    return vec![(title, url ,img, episode_count, release_date, genres, description, episodes)];
-    
+
+    return vec![(
+        title,
+        url,
+        img,
+        episode_count,
+        release_date,
+        genres,
+        description,
+        episodes,
+    )];
 }

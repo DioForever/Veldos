@@ -5,6 +5,7 @@
     Secondary Button: #ffffff (RGB: 255, 255, 255)
     Accent: #763ea8 (RGB: 118, 62, 168)
 */
+
 .search {
   display: flex;
   flex-direction: column;

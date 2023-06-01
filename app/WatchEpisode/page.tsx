@@ -14,10 +14,11 @@ const imageStyle = {
 export default function WatchEpisode() {
 
 
+
   return (
     <Layout>
       <div className="watch-episode-container">
-        <h1>sadsd </h1>
+
       </div>
     </Layout>
     // <div>
