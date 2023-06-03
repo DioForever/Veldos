@@ -1,0 +1,92 @@
+/* 
+    Primary: #eaecf5 (RGB: 234, 236, 245)
+    Secondary: #06070e (RGB: 6, 7, 14)
+    Primary Button: #0d2f52 (RGB: 13, 47, 82)
+    Secondary Button: #ffffff (RGB: 255, 255, 255)
+    Accent: #763ea8 (RGB: 118, 62, 168)
+*/
+
+/* h1,
+h2,
+p {
+  color: #eaecf5;
+}
+
+* {
+  background-color: #06070e;
+} */
+
+.home {
+  background-color: #06070e;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title {
+  color: #763ea8;
+  font-size: 30px;
+  border-bottom: 3px solid #0d2f52;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.lastWatched {
+  border: 5px solid #0d2f52;
+  border-radius: 10px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: calc(60vh);
+}
+
+.box {
+  background-color: #06070e;
+  border-radius: 10px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.box Button {
+  background-color: #0d2f52;
+  border-radius: 10px;
+  padding: 15px;
+  color: #eaecf5;
+  border: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.box Button:hover {
+  transition: 0.5s;
+  background-color: #763ea8;
+  color: #eaecf5;
+}
+
+.description {
+  justify-content: center;
+  color: #eaecf5;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.boxUn {
+  overflow-x: auto;
+}
+
+.group {
+  display: flex;
+  overflow: auto;
+  align-items: center;
+}

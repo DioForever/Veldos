@@ -5,9 +5,9 @@
     Secondary Button: #ffffff (RGB: 255, 255, 255)
     Accent: #763ea8 (RGB: 118, 62, 168)
 */
-* {
+/* * {
   color: #06070e;
-}
+} */
 
 .navSpace {
   height: 4rem;
@@ -45,15 +45,16 @@
   align-items: center;
   width: 30vw;
   height: 2.5rem;
+  background-color: #06070e;
 }
 .Icon {
-  margin-top: 0.2rem;
+  margin-top: -0.4rem;
   position: absolute;
   top: 50%;
   right: 15px;
   transform: translateY(-50%);
   height: 2rem;
-  width: 2rem;
+  width: 1.7rem;
   color: #eaecf5;
 }
 
@@ -69,6 +70,6 @@
   color: #eaecf5;
   margin-top: 0.5rem;
   height: 3rem;
-  width: 3.5rem;
+  width: 4.5rem;
   padding-left: 2rem;
 }

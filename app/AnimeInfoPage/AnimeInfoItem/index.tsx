@@ -8,6 +8,7 @@ import DescriptionComponent from '../../../components/functions/DescriptionCompo
 import ImageComponent from '../../../components/functions/ImageComponent';
 import { useRouter } from 'next/navigation';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context';
+import styles from './AnimeInfoItem.module.css';
 
 
 interface AnimeInfoItemProps {
@@ -64,9 +65,9 @@ const AnimeInfoItem = ({ search }: AnimeInfoItemProps) => {
         + " description: " + res.description
         + " episodes: " + res.episodes);
       setAnimeInfo(
-        <div className='infoBody'>
+        <div className={styles.infoBody}>
           <ImageComponent imageUrl={res.imageurl} />
-          <div className='infoDescription'>
+          <div className={styles.infoDescription}>
             <div>
               <h1>{res.title}</h1>
               <h4>Episodes: {(res.episodes).length}/{res.episode_count}</h4>
@@ -76,13 +77,13 @@ const AnimeInfoItem = ({ search }: AnimeInfoItemProps) => {
               <DescriptionComponent text={res.description} maxLengthPercentage={20} />
             </div>
           </div>
-          <div className='infoContinue'>
+          <div className={styles.infoContinue}>
             <h2>Continue watching at Episode 1</h2>
           </div>
-          <div className='episodes'>
+          <div className={styles.episodes}>
             {res.episodes.map((episode: string[]) => {
               return (
-                <div key={res.pageurl} className='episode' onClick={() => { goToEpisode(res.pageurl, router) }}>
+                <div key={res.pageurl} className={styles.episode} onClick={() => { goToEpisode(res.pageurl, router) }}>
                   <h3>{episode[0][0]}</h3>
                   <p>{episode[0][2]}</p>
                 </div>

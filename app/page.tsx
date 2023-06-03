@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Layout from '@/components/view/Layout';
+import Home from '@/app/Home';
 
 export type AnimeSearch = {
   title: string;
@@ -23,13 +24,8 @@ export type AnimeInfo = {
 
 
 
-export default function Home() {
+export default function page() {
   return (
-    <div>
-      <Layout>
-        <h1>Home</h1>
-
-      </Layout>
-    </div>
+    <Home />
   )
 }

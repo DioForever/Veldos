@@ -1,6 +1,6 @@
 "use client"
 import { useRouter, useSearchParams } from 'next/navigation';
-import './style.css';
+// import './AnimeInfoPage.module.css';
 import Layout from "../../components/view/Layout"
 import AnimeInfoItem from '@/app/AnimeInfoPage/AnimeInfoItem';
 

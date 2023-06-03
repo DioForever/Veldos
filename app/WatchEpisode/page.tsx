@@ -2,7 +2,7 @@
 import { ReactNode, useEffect, useRef } from 'react';
 import Layout from "../../components/view/Layout"
 
-import './style.css';
+import './WatchEpisode.module.css';
 
 interface WatchEpisodeProps {
   children: ReactNode;

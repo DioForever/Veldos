@@ -3,7 +3,7 @@ import { Dispatch, ReactNode, SetStateAction, useEffect, useState } from 'react'
 import { AnimeSearch } from '../../app/page';
 // import { HeartIcon as HeartFEmpty } from '@heroicons/react/24/outline';
 // import { HeartIcon as HeartFull } from '@heroicons/react/20/solid';
-import './style.css';
+// import './Search.module.css';
 // import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { invoke } from '@tauri-apps/api';
 import { useSearchParams } from 'next/navigation';

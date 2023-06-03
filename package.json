@@ -18,6 +18,7 @@
     "autoprefixer": "10.4.14",
     "axios": "^1.4.0",
     "fs-extra": "^11.1.1",
+    "heroicons": "^2.0.18",
     "hls-parser": "^0.10.6",
     "next": "13.4.4",
     "postcss": "8.4.24",
