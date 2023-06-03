@@ -15,16 +15,19 @@ interface AnimeInfoItemProps {
   search: string | null
 }
 
-function goToEpisode(url: string, router: AppRouterInstance) {
-  console.log(url);
-  router.push("/WatchEpisode?search_url=" + url);
+function goToEpisode(url: string, episode_url, router: AppRouterInstance) {
+  console.log("aladin ", url, episode_url);
+  router.push("/WatchEpisode?search_url=" + url + "&episode_url=" + episode_url);
   // navigate("/watchEpisode");
 }
 
 
 async function searchAnimeInfo(name: string) {
   const res: string[] = await invoke("getAnimeInfo", { url: name });
+  console.log("--------------------")
   console.log(res);
+  console.log("--------------------")
+
   // return vec![(title, url ,img, episode_count, release_date, genres, description, episodes)];
   const animeInfoItem: AnimeInfo = {
     title: res[0][0],
@@ -83,7 +86,7 @@ const AnimeInfoItem = ({ search }: AnimeInfoItemProps) => {
           <div className={styles.episodes}>
             {res.episodes.map((episode: string[]) => {
               return (
-                <div key={res.pageurl} className={styles.episode} onClick={() => { goToEpisode(res.pageurl, router) }}>
+                <div key={res.pageurl} className={styles.episode} onClick={() => { goToEpisode(res.pageurl, episode[0][1], router) }}>
                   <h3>{episode[0][0]}</h3>
                   <p>{episode[0][2]}</p>
                 </div>
@@ -101,44 +104,6 @@ const AnimeInfoItem = ({ search }: AnimeInfoItemProps) => {
     animeInfo
   );
 
-  // const [getAnimeInfo, setAnimeInfo] = useState<AnimeInfo>({} as AnimeInfo);
-  // if (search) {
-  //   searchAnimeInfo(search, setAnimeInfo);
-  //   if (getAnimeInfo !== {} as AnimeInfo) {
-  //     return (
-  //       <div className='infoBody'>
-  //         <ImageComponent imageUrl={getAnimeInfo.imageurl} />
-  //         <div className='infoDescription'>
-  //           <div>
-  //             <h1>{getAnimeInfo.title}</h1>
-  //             <h4>Episodes: {(getAnimeInfo.episodes).length}/{getAnimeInfo.episode_count}</h4>
-  //             <h4>{getAnimeInfo.genres}</h4>
-  //             <h4>Release: {getAnimeInfo.date}</h4>
-  //             <h2>Description:</h2>
-  //             <DescriptionComponent text={getAnimeInfo.description} maxLengthPercentage={20} />
-  //           </div>
-  //         </div>
-  //         <div className='infoContinue'>
-  //           <h2>Continue watching at Episode 1</h2>
-  //         </div>
-  //         <div className='episodes'>
-  //           {getAnimeInfo.episodes.map((episode: string[]) => {
-  //             return (
-  //               <div key={getAnimeInfo.pageurl} className='episode' onClick={() => { goToEpisode(getAnimeInfo.pageurl) }}>
-  //                 <h3>{episode[0][0]}</h3>
-  //                 <p>{episode[0][2]}</p>
-  //               </div>
-  //             )
-  //           })}
-
-  //         </div>
-  //       </div>
-  //     );
-  //   }
-  // } else {
-
-  //   return <></>;
-  // }
 }
 
 export default AnimeInfoItem;

@@ -1,7 +1,14 @@
+"use client"
 import { ReactNode } from 'react';
 import styles from './Home.module.css';
 import Layout from '@/components/view/Layout';
 import AnimeBox from './AnimeBox';
+import { invoke } from '@tauri-apps/api/tauri';
+// import sqlite3 from 'sqlite3';
+// import { getAnime, saveAnime } from '@/components/functions/DataBase';
+import Download from '@/components/functions/Download';
+import { getAnime, saveAnime } from '../../components/functions/DataBase';
+// import InteractiveButton from './InteractiveButton';
 
 
 interface HomeProps {
@@ -13,66 +20,79 @@ export type AnimeItem = {
   url: string,
   img: string,
   status: string,
-  episode_count: string,
+  episode: string,
+}
+
+
+
+
+const addAnime = async (anime: AnimeItem) => {
+  const res: string[] = await invoke("add_anime");
+  // const res: string[] = await invoke("addAnime", { url: name });
+  console.log(res);
 }
 
 const getData = () => {
+
+
+
   const lastWatched: AnimeItem = {
     title: "Dr. Stone: New World (Dub)",
     url: "https://animeheaven.ru/detail/dr-stone-new-world-dub",
     img: "https://static.anmedm.com/media/imagesv2/2023/04/Dr-STONE-NEW-WORLD-Dub.jpg",
     status: "Ongoing",
-    episode_count: "7",
+    episode: "7",
   }
+
   const unfinished: AnimeItem[] = [
     {
       title: "One Piece",
       url: "https://animeheaven.ru/detail/dr-stone-new-world-dub",
       img: "https://static.anmedm.com/media/imagesv2/2023/04/Dr-STONE-NEW-WORLD-Dub.jpg",
       status: "Ongoing",
-      episode_count: "7",
+      episode: "7",
     } as AnimeItem,
     {
       title: "One Piece",
       url: "https://animeheaven.ru/detail/dr-stone-new-world-dub",
       img: "https://static.anmedm.com/media/imagesv2/2023/04/Dr-STONE-NEW-WORLD-Dub.jpg",
       status: "Ongoing",
-      episode_count: "7",
+      episode: "7",
     } as AnimeItem,
     {
       title: "One Piece",
       url: "https://animeheaven.ru/detail/dr-stone-new-world-dub",
       img: "https://static.anmedm.com/media/imagesv2/2023/04/Dr-STONE-NEW-WORLD-Dub.jpg",
       status: "Ongoing",
-      episode_count: "7",
+      episode: "7",
     } as AnimeItem,
     {
       title: "One Piece",
       url: "https://animeheaven.ru/detail/dr-stone-new-world-dub",
       img: "https://static.anmedm.com/media/imagesv2/2023/04/Dr-STONE-NEW-WORLD-Dub.jpg",
       status: "Ongoing",
-      episode_count: "7",
+      episode: "7",
     } as AnimeItem,
     {
       title: "One Piece",
       url: "https://animeheaven.ru/detail/dr-stone-new-world-dub",
       img: "https://static.anmedm.com/media/imagesv2/2023/04/Dr-STONE-NEW-WORLD-Dub.jpg",
       status: "Ongoing",
-      episode_count: "7",
+      episode: "7",
     } as AnimeItem,
     {
       title: "One Piece",
       url: "https://animeheaven.ru/detail/dr-stone-new-world-dub",
       img: "https://static.anmedm.com/media/imagesv2/2023/04/Dr-STONE-NEW-WORLD-Dub.jpg",
       status: "Ongoing",
-      episode_count: "7",
+      episode: "7",
     } as AnimeItem,
     {
       title: "One Piece",
       url: "https://animeheaven.ru/detail/dr-stone-new-world-dub",
       img: "https://static.anmedm.com/media/imagesv2/2023/04/Dr-STONE-NEW-WORLD-Dub.jpg",
       status: "Ongoing",
-      episode_count: "7",
+      episode: "7",
     } as AnimeItem
   ]
   const finished: AnimeItem[] = [
@@ -81,14 +101,14 @@ const getData = () => {
       url: "https://animeheaven.ru/detail/dr-stone-new-world-dub",
       img: "https://static.anmedm.com/media/imagesv2/2023/04/Dr-STONE-NEW-WORLD-Dub.jpg",
       status: "Ongoing",
-      episode_count: "7",
+      episode: "7",
     } as AnimeItem,
     {
       title: "One Piece",
       url: "https://animeheaven.ru/detail/dr-stone-new-world-dub",
       img: "https://static.anmedm.com/media/imagesv2/2023/04/Dr-STONE-NEW-WORLD-Dub.jpg",
       status: "Ongoing",
-      episode_count: "7",
+      episode: "7",
     } as AnimeItem
   ]
 
@@ -104,7 +124,11 @@ const style = {
   backgroundImage: `url(${lastWatched.img})`,
 }
 
+
+
 export function Home() {
+
+
   return (
     <Layout>
       <div className={styles.home}>
@@ -114,9 +138,12 @@ export function Home() {
             <div className={styles.description}>
               <h1>{lastWatched.title}</h1>
               <h2>{lastWatched.status}</h2>
-              <h2>{lastWatched.episode_count} Episodes</h2>
+              <h2>{lastWatched.episode} Episodes</h2>
             </div>
-            <button>Continue watching</button>
+            <button
+              onClick={() => getAnime("Dr. Stone: New World (Dub)")}
+            >Continue watching</button>
+
           </div>
         </div>
         <h1 className={styles.title}>Unfinished</h1>
@@ -140,8 +167,8 @@ export function Home() {
           </div>
         </div>
       </div>
+      {/* <Download url={''} /> */}
     </Layout>
   );
 }
-
 export default Home;
