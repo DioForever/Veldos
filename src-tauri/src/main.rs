@@ -1,12 +1,10 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 mod animeheaven;
+mod download;
 mod gogoanime;
 mod info;
 mod search;
-use std::result;
-
-use reqwest;
 
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 #[tauri::command]
@@ -14,13 +12,21 @@ fn greet(name: &str) -> String {
     format!("Hello, {}! You've been greeted from Rust!", name)
 }
 
+// tauri::Builder::default()
+// .plugin(tauri_plugin_sqlite::init())
+// .build()
+// .run();
+
 fn main() {
     tauri::Builder::default()
+        .plugin(tauri_plugin_sqlite::init())
         .invoke_handler(tauri::generate_handler![
             greet,
             animeheaven::get_master_m3u8,
             animeheaven::search_anime,
-            info::getAnimeInfo
+            info::getAnimeInfo,
+            download::download_episode,
+            download::check_episode,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

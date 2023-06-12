@@ -1,5 +1,4 @@
-"use client"
-import { ReactNode, useEffect, useRef } from 'react';
+import { ReactNode, useEffect, useRef, useState } from 'react';
 import Layout from "../../components/view/Layout"
 import EpisodeView from "./EpisodeView"
 import './WatchEpisode.module.css';
@@ -16,16 +15,14 @@ const imageStyle = {
 };
 
 export default function WatchEpisode() {
-  const searchParams = useSearchParams();
-  const search_url = searchParams.get("search_url");
-  const episode_url = searchParams.get("episode_url");
-  // const episode_url = "";
-  console.log("search_url: " + search_url);
-  console.log("episode_url: " + episode_url);
+
+
+
+
 
   return (
     <Layout>
-      <EpisodeView search_url={search_url} episode_url={episode_url}></EpisodeView>
+      <EpisodeView></EpisodeView>
     </Layout>
 
 

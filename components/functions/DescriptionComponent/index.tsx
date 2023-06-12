@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import { ReactNode } from 'react';
-import './style.css';
+import styles from './DescriptionComponent.module.css';
 
 interface DescriptionComponentProps {
   text: string;
@@ -35,10 +35,10 @@ export default function DescriptionComponent({ text, maxLengthPercentage }: Desc
   };
 
   return (
-    <div className="read-more-container" style={containerStyle}>
+    <div className={styles.readmorecontainer} style={containerStyle}>
       <p>{displayText}</p>
       {text.length > maxLength && (
-        <button className='showBtn' onClick={toggleExpand}>{btnText}</button>
+        <button className={styles.showBtn} onClick={toggleExpand}>{btnText}</button>
       )}
     </div>
   );

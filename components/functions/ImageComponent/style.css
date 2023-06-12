@@ -19,19 +19,3 @@
   display: grid;
   grid-template-columns: 90% 5%;
 }
-
-.imageHeart {
-  position: absolute;
-  padding-top: 1rem;
-  min-width: 30px;
-  width: 5vw;
-  color: #763ea8;
-  background-color: transparent;
-
-  /* padding-left: 70vw; */
-}
-
-.imageHeart svg {
-  background-color: transparent;
-  color: #763ea8;
-}

@@ -1,8 +1,7 @@
-use std::process::Command;
 use reqwest;
 use select::document::Document;
-use select::predicate::{Attr};
-
+use select::predicate::Attr;
+use std::process::Command;
 
 #[tauri::command]
 pub fn get_master_m3u8() {
@@ -19,7 +18,6 @@ pub fn get_master_m3u8() {
     // println!("stderr: {}", stderr);
 }
 
-
 #[tauri::command]
 pub async fn search_anime(mut title: String) -> Vec<(String, String, String, String, String)> {
     // we will create a list of all anime we found
@@ -27,18 +25,18 @@ pub async fn search_anime(mut title: String) -> Vec<(String, String, String, Str
     let count = 0;
     let mut finished = false;
     let mut anime_list: Vec<(String, String, String, String, String)> = vec![];
-    let mut page = count/20+1;
+    let mut page = count / 20 + 1;
 
-    while finished == false{
+    while finished == false {
         //we need to replace spaces with - for search to be possible
         title = title.trim().replace(" ", "+");
         //now lets get the page its on count/20 +1, cuz we get 0 but we start with page 1 upon looping
 
-        title += &format!("&page={}", page);
+        // title = title, ("&page=" + page);
+        title = format!("{}&page={}", title, page);
         let url = format!("https://animeheaven.ru/search?q={}", title);
         let resp = reqwest::get(&url).await.unwrap();
         let body = resp.text().await.unwrap();
-
 
         // Parse the HTML document
         let document = Document::from(body.as_str());
@@ -48,7 +46,6 @@ pub async fn search_anime(mut title: String) -> Vec<(String, String, String, Str
         let elements_cona = document.find(Attr("class", "cona"));
         let element_an_thum = document.find(Attr("class", "coveri hd"));
         let elementbox = document.find(Attr("class", "iep"));
-
 
         // Iterate over the selected elements and save the data
         let mut title: Vec<String> = vec![];
@@ -66,13 +63,14 @@ pub async fn search_anime(mut title: String) -> Vec<(String, String, String, Str
             ep.push(item_list[1].trim().to_string());
             time.push(item_list[2].trim().to_string());
             title.push(item_list[3].trim().to_string());
-            
         }
 
         let mut i = 0;
         for element in elements_cona {
             i += 1;
-            if i%2 != 0 {continue;}
+            if i % 2 != 0 {
+                continue;
+            }
             // println!("text {} {}",element.text(), element.attr("href").unwrap());
             // title.push(element.text());
             url.push(element.attr("href").unwrap().to_string());
@@ -97,7 +95,9 @@ pub async fn search_anime(mut title: String) -> Vec<(String, String, String, Str
             u += 1;
             // println!("img {}",element.attr("src").unwrap());
             img.push(element.attr("src").unwrap().to_string());
-            if i/2==u {break;}
+            if i / 2 == u {
+                break;
+            }
         }
 
         // println!("len {}",title.len());
@@ -105,16 +105,27 @@ pub async fn search_anime(mut title: String) -> Vec<(String, String, String, Str
             // println!("{}", i);
             // println!("{} {} {} {} {}", title[i].to_string(), url[i].to_string(), img[i].to_string(),
             // ep[i].to_string(), time[i].to_string());
-            let _an: (&str, String, String, String, String, String) = ("{} {} {} {} {}", title[i].to_string(), url[i].to_string(), img[i].to_string(),
-             ep[i].to_string(), time[i].to_string());
-             anime_list.push((title[i].to_string(), url[i].to_string(), img[i].to_string(),ep[i].to_string(), time[i].to_string()));
+            let _an: (&str, String, String, String, String, String) = (
+                "{} {} {} {} {}",
+                title[i].to_string(),
+                url[i].to_string(),
+                img[i].to_string(),
+                ep[i].to_string(),
+                time[i].to_string(),
+            );
+            anime_list.push((
+                title[i].to_string(),
+                url[i].to_string(),
+                img[i].to_string(),
+                ep[i].to_string(),
+                time[i].to_string(),
+            ));
         }
 
-
-        
-        if title.len()%20 != 0 {finished = true;}
+        if title.len() % 20 != 0 {
+            finished = true;
+        }
         page += 1;
     }
     return anime_list;
-
 }

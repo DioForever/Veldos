@@ -5,6 +5,8 @@ import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import styles from './SearchItems.module.css';
+import { initliaze } from '../../../components/functions/Database'
+
 
 interface SearchItemsProps {
   search: string | null,
@@ -13,6 +15,8 @@ interface SearchItemsProps {
 
 async function searchAnime(name: string) {
   console.log("name: " + name);
+  // const a = await invoke("download_anime", { title: "The Ancient Magus Bride Season 2", url: "https://animeheaven.ru/watch/the-ancient-magus-bride-season-2-dub?ep=183936", episode: "Episode 1" });
+
   const map: AnimeSearch[] = await invoke("search_anime", { title: name }).then((res: any) => {
     console.log(res);
     const items = (res.map((anime: any[]) => {
@@ -45,6 +49,7 @@ export default function SearchItems({ search }: SearchItemsProps) {
   console.log(search);
 
   if (search != null && search != lastSearch) {
+    initliaze();
     setLastSearch(search);
     searchAnime(search).then((res) => {
       console.log("res" + res);

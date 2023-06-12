@@ -22,9 +22,15 @@ reqwest = "0.11"
 tokio = { version = "1.0", features = ["full"] }
 dotenv = "0.15"
 selenium-rs = "0.1.2"
-webdriver = "0.48.0"
-selenium_webdriver = "0.1.7"
 select = "0.6.0"
+m3u8-rs = "5.0.4"
+anyhow = "1.0.44"
+headless_chrome = {git = "https://github.com/atroche/rust-headless-chrome", features = ["fetch"] }
+hls_m3u8 = "0.4.1"
+
+[dependencies.tauri-plugin-sqlite]
+git = "https://github.com/lzdyes/tauri-plugin-sqlite"
+tag = "v0.1.1"
 
 [features]
 # this feature is used for production builds or when `devPath` points to the filesystem and the built-in dev server is disabled.

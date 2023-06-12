@@ -7,6 +7,7 @@
 */
 
 .animeItem {
+  cursor: pointer;
   align-items: center;
   padding-bottom: 10px;
   display: flex;

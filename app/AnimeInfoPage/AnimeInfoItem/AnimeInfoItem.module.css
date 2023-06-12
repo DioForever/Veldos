@@ -95,34 +95,86 @@
 .episodes {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 1rem;
+  width: 100%;
+  margin-top: 1rem;
 }
 
 .episode {
-  border-radius: 1rem;
-  background-color: #0d0f1e;
-  padding: 3%;
-  margin: 0.2rem;
-  margin-top: 1rem;
-  border: 4px solid #0d2f52;
-}
-
-.episode:hover {
-  transition: 0.5s;
-  cursor: pointer;
-  border: 4px solid #763ea8;
-}
-
-.episode h3 {
-  margin: 0.2rem;
-  font-size: 1.2rem;
-  font-weight: 400;
-  color: #eaecf5;
-  height: 3rem;
-}
-
-.episode p {
+  background-color: orange;
   margin: 0;
-  font-size: 1rem;
-  font-weight: 400;
-  color: #eaecf5;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.downloadButton {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.downloadButton span {
+  position: relative;
+  background: green;
+  width: 150px;
+  height: 150px;
+  border: 15px solid red;
+}
+
+.downloadButton span::before {
+  content: "";
+  position: absolute;
+  weight: 250px;
+  height: 250px;
+  background: blue;
+  border-radius: 50%;
+  transform: scale(0.9);
+}
+
+.downloadButton span i {
+  position: absolute;
+  inset: 0;
+  background-color: linear-gradiant(45deg, #fff, #000, red);
+  border-radius: 50%;
+  filter: blur(5px);
+  animation: animate 1s linear infinite;
+}
+
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.emptyheart:hover {
+  color: #763ea8;
+  transition: 0.5s;
+}
+
+.emptyheart {
+  position: absolute;
+  padding-top: 1rem;
+  min-width: 30px;
+  width: 5vw;
+  color: #0d2f52;
+  background-color: transparent;
+}
+
+.fullheart:hover {
+  color: #0d2f52;
+  transition: 0.5s;
+}
+
+.fullheart {
+  position: absolute;
+  padding-top: 1rem;
+  min-width: 30px;
+  width: 5vw;
+  color: #763ea8;
+  background-color: transparent;
 }
