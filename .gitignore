@@ -35,5 +35,5 @@ yarn-error.log*
 next-env.d.ts
 
 #download
-src-tauri/download
+download
 public/anime

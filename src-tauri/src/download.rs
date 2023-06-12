@@ -111,14 +111,14 @@ async fn download_by_playlist_url(url: &str, title: &str, episode: &String) -> R
         Ok(Playlist::MediaPlaylist(pl)) => {
             println!("Media playlist:");
 
-            let path: String = format!("download/{}/{}.ts", title, episode);
-            let folder_path_download: String = format!("download/");
+            let path: String = format!("../download/{}/{}.ts", title, episode);
+            let folder_path_download: String = format!("../download/");
 
             if !(fs::metadata(&folder_path_download).is_ok()) {
-                fs::create_dir("download").expect("Unable to create directory");
+                fs::create_dir("../download").expect("Unable to create directory");
             }
 
-            let folder_path: String = format!("download/{}/", title);
+            let folder_path: String = format!("../download/{}/", title);
             if !(fs::metadata(&folder_path).is_ok()) {
                 fs::create_dir(folder_path).expect("Unable to create directory");
             }
@@ -152,7 +152,7 @@ fn ts_to_mp4(title: String, episode: String) -> bool {
         fs::create_dir(folder_path).expect("Unable to create directory");
     }
 
-    let input_file = format!("download/{}/{}.ts", title, episode);
+    let input_file = format!("../download/{}/{}.ts", title, episode);
     let output_file = format!("../public/anime/{}/{}.mp4", title, episode);
 
     // Create the FFmpeg command
