@@ -14,6 +14,7 @@ import { invoke } from "@tauri-apps/api/tauri";
 import { useRouter } from 'next/navigation';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context';
 import Link from 'next/link';
+import TengokuWhite from 'components/functions/Navbar/TengokuWhite.png';
 // import { useRouter } from 'next/router';
 // import { NavigateFunction, useNavigate } from 'react-router-dom';
 
@@ -63,53 +64,31 @@ function Navbar() {
       <nav className={styles.navbar}>
         <Link href={'/'}>
           <div className={styles.main}>
-            {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-            </svg> */}
-
-
+            <img src={TengokuWhite.src} alt="Tengoku" className={styles.logo} />
           </div>
         </Link>
 
         <div className={styles.Input}>
           <div>
             <input type="text" placeholder="Search..." onKeyDown={(e) => { handleKeyDown(e, router); }} onChange={(e) => { setsearchWord(e.target.value); console.log(searchWord); }}
-            // style={ (icon != undefined) ? {padding: '6.5px 2em 6.5px 10px'} : {}}
             />
             <div className={styles.Icon}>
-              {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-              </svg> */}
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                <path fill-rule="evenodd" d="M10.5 3.75a6.75 6.75 0 100 13.5 6.75 6.75 0 000-13.5zM2.25 10.5a8.25 8.25 0 1114.59 5.28l4.69 4.69a.75.75 0 11-1.06 1.06l-4.69-4.69A8.25 8.25 0 012.25 10.5z" clip-rule="evenodd" />
+              </svg>
 
             </div>
           </div>
         </div>
 
-        <div className='menu' ref={ref} {...anchorProps}>
+        <div className={styles.menu} ref={ref} {...anchorProps}>
           {/* <Bars3Icon /> */}
         </div>
       </nav>
 
 
-      {/* <ControlledMenu
-        {...hoverProps}
-        {...menuState}
-        anchorRef={ref}
-        offsetX={-60
-        }
-        offsetY={10
-        }
-        onClose={() => toggle(false)}
-      >
-        <MenuItem>Settings</MenuItem>
-        <MenuItem>Copy</MenuItem>
-      </ControlledMenu> */}
     </>
   );
 }
 
 export default Navbar;
-
-function browserHistory(arg0: string) {
-  throw new Error('Function not implemented.');
-}

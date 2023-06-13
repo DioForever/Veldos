@@ -29,6 +29,7 @@
 }
 
 .Input {
+  margin-top: 0.5rem;
   position: relative;
   display: inline-block;
   padding-left: 2rem;
@@ -47,15 +48,19 @@
   height: 2.5rem;
   background-color: #06070e;
 }
-.Icon {
+.Icon svg {
   margin-top: -0.4rem;
   position: absolute;
-  top: 50%;
+  top: 53%;
   right: 15px;
   transform: translateY(-50%);
-  height: 2rem;
+  height: 1.7rem;
   width: 1.7rem;
   color: #eaecf5;
+}
+
+.logo {
+  width: 5rem;
 }
 
 .menu {
@@ -70,6 +75,5 @@
   color: #eaecf5;
   margin-top: 0.5rem;
   height: 3rem;
-  width: 4.5rem;
   padding-left: 2rem;
 }
