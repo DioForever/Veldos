@@ -73,19 +73,21 @@ export function View() {
         }
       }
       setUnfinished(unfinished_list);
-      console.log(res.lastWatched[0]);
-      const lWatched = {
-        title: res.lastWatched[0].title,
-        url: res.lastWatched[0].url,
-        img: res.lastWatched[0].img,
-        episode: res.lastWatched[0].episode,
-        episode_url: res.lastWatched[0].episode_url,
-        episode_count: res.lastWatched[0].episode_count,
-        episode_last: res.lastWatched[0].episode_last.replace(/\D/g, ''),
-      } as AnimeItem;
-      console.log(lWatched);
-      console.log("last watched man");
-      setLastWatched(lWatched);
+      if (res.lastWatched[0] != undefined) {
+        console.log(res.lastWatched[0]);
+        const lWatched = {
+          title: res.lastWatched[0].title,
+          url: res.lastWatched[0].url,
+          img: res.lastWatched[0].img,
+          episode: res.lastWatched[0].episode,
+          episode_url: res.lastWatched[0].episode_url,
+          episode_count: res.lastWatched[0].episode_count,
+          episode_last: res.lastWatched[0].episode_last.replace(/\D/g, ''),
+        } as AnimeItem;
+        console.log(lWatched);
+        setLastWatched(lWatched);
+        console.log("last watched man");
+      }
 
       // setLastWatched(res.lastWatched);
       // setUnfinished(res.unfinished);
@@ -107,8 +109,7 @@ export function View() {
             <h2>{lastWatched.episode_last}/{lastWatched.episode}/{lastWatched.episode_count} Episodes</h2>
           </div>
           <button
-            onClick={() => goToEpisode(lastWatched.url, lastWatched.episode, router, "", "", lastWatched.episode_url)}
-          // onClick={() => getAnime("Dr. Stone: New World (Dub)")}
+            onClick={() => goToEpisode(lastWatched.url, lastWatched.episode_last, router, "", "", lastWatched.episode_url)}
           >Continue watching</button>
 
         </div>

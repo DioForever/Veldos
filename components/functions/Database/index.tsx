@@ -14,8 +14,8 @@ export async function initliaze() {
         CREATE TABLE IF NOT EXISTS anime (title TEXT, url TEXT, img TEXT, episode TEXT, episode_url TEXT, episode_count TEXT, episode_last TEXT);
       `)
   await db.execute(`
-        CREATE TABLE IF NOT EXISTS last (title TEXT, url TEXT, img TEXT, episode TEXT, episode_url TEXT, episode_count TEXT, episode_last TEXT);
-      `)
+      CREATE TABLE IF NOT EXISTS last (title TEXT, url TEXT, img TEXT, episode TEXT, episode_url TEXT, episode_count TEXT, episode_last TEXT);
+    `)
 
 }
 
@@ -41,11 +41,21 @@ export async function getAnime(title: string) {
   }
 }
 
-export async function saveAnime(anime: AnimeItem) {
+export async function getAnimeEpisode(title: string) {
   initliaze();
   const db = await SQLite.open('../database.db')
 
-  await db.execute('INSERT INTO anime VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)', [anime.title, anime.url, anime.img, anime.episode, anime.episode_url, anime.episode_count, anime.episode_last])
+  const rows = await db.select<Array<{ count: number }>>('SELECT * FROM anime WHERE title = ?', [title])
+  console.log("rows" + rows + rows.length);
+  return rows;
+}
+
+
+export async function saveAnime(anime: AnimeItem) {
+  initliaze();
+  const db = await SQLite.open('../database.db')
+  await db.execute('DELETE FROM anime WHERE title = (?1)', [anime.title])
+  await db.execute('INSERT INTO anime VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7) ', [anime.title, anime.url, anime.img, anime.episode, anime.episode_url, anime.episode_count, anime.episode_last])
   // console.log('saved', [anime.title, anime.url, anime.img, anime.episode, anime.episode_url, anime.episode_count, anime.episode_last]);
 
 }

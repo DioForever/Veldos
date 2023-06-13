@@ -147,6 +147,11 @@ async fn download_by_playlist_url(url: &str, title: &str, episode: &String) -> R
 
 fn ts_to_mp4(title: String, episode: String) -> bool {
     // Set the paths to the input and output files
+    let folder_anime_path: String = format!("../public/anime/");
+    if !(fs::metadata(&folder_anime_path).is_ok()) {
+        fs::create_dir(folder_anime_path).expect("Unable to create directory");
+    }
+
     let folder_path: String = format!("../public/anime/{}/", title);
     if !(fs::metadata(&folder_path).is_ok()) {
         fs::create_dir(folder_path).expect("Unable to create directory");

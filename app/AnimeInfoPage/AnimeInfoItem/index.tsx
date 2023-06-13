@@ -13,6 +13,7 @@ import { useSearchParams } from 'next/navigation';
 import EpisodeBox from '../EpisodeBox';
 import { saveAnime, removeAnime, getAnime } from '@/components/functions/Database';
 import { AnimeItem } from '@/app/Home';
+import { getAnimeEpisode } from '../../../components/functions/Database';
 
 
 
@@ -20,6 +21,22 @@ interface AnimeInfoItemProps {
 
 }
 
+
+function getEpisode(title: string, setEpisode: Dispatch<SetStateAction<string>>) {
+  let aniItem = getAnimeEpisode(title).then((aniItem: any) => {
+    if (aniItem.length > 0) {
+      console.log("aniItem", aniItem);
+      setEpisode(aniItem[0].episode_last);
+    }
+  });
+  // setEpisode(await getAnimeEpisode(title))
+}
+
+function goToEpisode(url: string, episode_name: string, router: AppRouterInstance) {
+  // console.log("aladin ", url, episode_name);
+  router.push("/WatchEpisode?search_url=" + url + "&episode_name=" + episode_name + "&episode_last=" + "" + "&episode_next=" + "" + "&episode_url=" + "");
+  // navigate("/watchEpisode");
+}
 
 
 export default function AnimeInfoItem() {
@@ -52,6 +69,7 @@ export default function AnimeInfoItem() {
   const router = useRouter();
   const [liked, setLiked] = useState<boolean>(false);
   const [loaded, setLoaded] = useState<boolean>(false);
+  const [episode, setEpisode] = useState<string>("");
   const [res, setResponse] = useState<AnimeInfo>(
 
     {
@@ -71,6 +89,17 @@ export default function AnimeInfoItem() {
     searchAnimeInfo(search, setResponse, setLiked);
 
   }
+  if (episode == "") {
+    getEpisode(res.title, setEpisode);
+  }
+
+  // useEffect(() => {
+
+  //   getAnimeEpisode(res.title).then((episode) => {
+  //     setEpisode(episode.episode_last);
+  //   });
+
+  // }, [res]);
 
 
   return (
@@ -97,18 +126,19 @@ export default function AnimeInfoItem() {
         </div>
       </div>
       <div className={styles.infoContinue}>
-        <h2>Continue watching at Episode 1</h2>
+        <h2
+          onClick={() => {
+            if (res.title != "") {
+              goToEpisode(res.pageurl, episode, router);
+            }
+          }}
+        >Continue watching at {episode}</h2>
       </div>
 
       <div className={styles.episodes}>
         {res.episodes.map((episode: string[], index: number, array: any) => {
           const episode_last = index > 0 ? array[index - 1][0][1] : null;
           const episode_next = index < array.length - 1 ? array[index + 1][0][1] : null;
-          // console.log("episode")
-          // console.log(episode_last);
-          // console.log(episode_next);
-          // console.log("---------")
-
           return (
             <EpisodeBox episode={episode} res={res} episode_last={episode_last} episode_next={episode_next} />
           )
